@@ -1,6 +1,6 @@
 let timeout = 60000
-let poin = 500
-let poin_lose = -100
+let poin = 50000
+let poin_lose = -50000
 let handler = async (m, { conn, usedPrefix }) => {
   conn.suit = conn.suit ? conn.suit : {}
   if (Object.values(conn.suit).find(room => room.id.startsWith('suit') && [room.p, room.p2].includes(m.sender))) throw 'Selesaikan suit mu yang sebelumnya'
@@ -27,6 +27,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]}
     }, timeout), poin, poin_lose, timeout
   }
 }
+handler.customPrefix = /^(pasang)$/i
 handler.tags = ['game']
 handler.help = ['suitpvp'].map(v => v + ' @tag')
 handler.command = /^suitpvp$/i
